@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button [text]="''"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <%= camelize(name) %>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-hide-when mode="md">
+        <ion-button>
+            <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+        </ion-hide-when>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-toolbar  color="primary">
+    <ion-buttons slot="start">
+        <ion-button size="small" (click)="dt.exportCSV()"><ion-icon slot="icon-only" name="download"></ion-icon><ion-label [hidden]="!showPaginator">Download (Excel)</ion-label></ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+        <ion-button size="small"><ion-icon slot="icon-only" name="refresh"></ion-icon><ion-label [hidden]="!showPaginator">Refresh</ion-label></ion-button>
+      </ion-buttons>
+</ion-toolbar>
+
+<ion-content padding>
+  
+  <ion-refresher *ngIf="!showPaginator" slot="fixed" (ionRefresh)="beforePageLoad($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to before page" refreshingSpinner="circles" refreshingText="Refreshing..."></ion-refresher-content>
+  </ion-refresher>
+  <!-- <ion-infinite-scroll position="top" threshold="0px" *ngIf="!showPaginator" (ionInfinite)="beforePageLoad($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll> -->
+
+  <!-- <pre>{{ selected | json }}</pre>  -->
+  <!-- [tableStyle]="{'table-layout':'auto'}" [scrollable]="showPaginator" [scrollHeight]="'95%'" -->
+
+  <p-table id="dt" #dt [columns]="<%= camelize(name) %>Cols" [value]="<%= camelize(name) %>Array" [responsive]="true" 
+  [paginator]="false" [paginatorPosition]="!showPaginator ? 'both' : 'bottom'" [rows]="rowsPerPage" [totalRecords]="total" [pageLinks]="3" [first]="skip"
+  resizableColumns="true" reorderableColumns="true" [scrollable]="showPaginator" [scrollHeight]="'calc(100vh - 285px)'"
+  selectionMode="single" [(selection)]="selected" dataKey="id" [lazy]="true" (onLazyLoad)="loadData($event)">
+      <!-- <ng-template pTemplate="caption">
+          <ion-toolbar *ngIf="showPaginator" class="toolbar-without-background">
+            <ion-buttons slot="start">
+                <ion-button size="small" (click)="dt.exportCSV()"><ion-icon name="download"></ion-icon>Download</ion-button>
+            </ion-buttons>
+            <ion-buttons slot="end">
+                <ion-button size="small"><ion-icon name="refresh"></ion-icon>Refresh</ion-button>
+              </ion-buttons>
+        </ion-toolbar>
+    </ng-template> -->
+    <ng-template pTemplate="colgroup" let-columns>
+      <colgroup *ngIf="showPaginator" >
+          <col *ngFor="let col of columns">
+      </colgroup>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns >
+      <tr>
+        <th *ngFor="let col of columns; let i = index" pResizableColumn pReorderableColumn>
+          {{col.header | uppercase}}
+        </th>
+      </tr>
+      <tr>
+        <th *ngFor="let col of columns; let i = index" [ngSwitch]="col.field" pResizableColumn pReorderableColumn>
+          <input *ngSwitchCase="'name'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <input *ngSwitchCase="'city'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr (tap)="onTap($event, rowData)" (dblclick)="onDoubleClick($event, rowData)" (press)="onPress($event, rowData)" routerLinkActive="router-link-active" ><!--  [routerLink]="[rowData.id]" -->
+        <td *ngFor="let col of columns; let i = index" class="ui-resizable-column">
+
+            <ion-label slot="start" text-right class="ui-column-title">{{col.header | uppercase}}</ion-label>
+            <ion-text slot="end" text-wrap>{{rowData[col.field]}}</ion-text>
+
+
+
+          <!-- <ion-item *ngIf="!showPaginator; else noSmallDevice">
+            <ion-label class="ui-column-title">{{col.header | uppercase}}</ion-label>
+            {{rowData[col.field]}}
+          </ion-item>
+          <ng-template #noSmallDevice>
+            <ion-label class="ui-column-title">{{col.header | uppercase}}</ion-label>
+            {{rowData[col.field]}}
+          </ng-template> -->
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <!-- Change to ion-refresher once issue is solved - https://github.com/ionic-team/ionic/issues/14214 -->
+  <div *ngIf="!showPaginator" style="height: 50px;"></div>
+  <ion-infinite-scroll position="bottom" threshold="0px" *ngIf="!showPaginator" (ionInfinite)="nextPageLoad($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  
+  
+<ion-hide-when mode="ios">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="create">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-hide-when>
+
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar color="primary">
+      <p-paginator [rows]="rowsPerPage" [totalRecords]="total" [pageLinkSize]="3" [first]="skip" (onPageChange)="paginate($event)"></p-paginator>
+  </ion-toolbar>
+</ion-footer>

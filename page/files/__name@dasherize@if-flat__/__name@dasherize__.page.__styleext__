@@ -1,0 +1,81 @@
+
+
+.ui-paginator-last	
+{
+    display: none;
+}
+
+.toolbar-without-background {
+  --background: none;
+}
+
+.ui-widget-header {
+  border: none;
+  background: none;
+  background-color: none;
+}
+
+.ui-paginator-element {
+  width: 2.7em !important;
+  height: 2.7em !important;
+}
+
+.ui-paginator-pages {
+  height: none !important;
+}
+
+.ui-paginator a {
+  color: white;
+}
+
+.ui-state-active {
+  color: red !important;
+}
+
+.ui-state-default {
+  border: none !important;
+  background: none !important;
+  //color: white !important;
+}
+
+.ui-table .ui-table-thead > tr > th, .ui-table .ui-table-tfoot > tr > td {
+  background: var(--ion-color-primary-shade, none);
+  color: var(--ion-color-primary-contrast, white);
+}
+
+.ui-column-title {
+  padding: 0px !important;
+  min-width: 120px !important;
+}
+
+
+// @media (max-width: 640px) 
+// {
+
+//   .ui-table .ui-table-tbody > tr > td {
+//     padding: 0px;
+//   }
+
+//   .item-label {
+//     --min-height: 28px; //44px is the default
+//     --padding-start: 8px; //fix for padding (is getting 16px - why?)
+//     // --inner-padding-end: 0px; //if want to change the inner
+//   }
+
+// }
+
+
+// To 
+// @media (min-width: 640px) 
+// {
+//     .ui-table table 
+//     {
+//         table-layout: auto;
+//     }
+//     .ui-table-wrapper 
+//     {
+//         max-height: calc(100vh - 120px);
+//         overflow-y: auto;
+//         overflow-x: auto;
+//     }
+// }
