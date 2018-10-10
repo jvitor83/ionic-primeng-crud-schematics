@@ -55,7 +55,7 @@ export class <%= classify(name) %>ChangePage implements OnInit, OnDestroy {
     const loadingPromise = this.loadingController.create();
     loadingPromise.then(r => r.present());
 
-    const readObservable: Observable<any> = this.<%= camelize(name) %>Service.get(<%= camelize(name) %>Id);
+    const readObservable: Observable<any> = this.<%= camelize(name) %>Service.getByKey(<%= camelize(name) %>Id);
 
     this.readSubscription = readObservable.subscribe(<%= camelize(name) %> => {
       Object.assign(this.<%= camelize(name) %>, <%= camelize(name) %>);
@@ -78,7 +78,7 @@ export class <%= classify(name) %>ChangePage implements OnInit, OnDestroy {
     const loadingPromise = this.loadingController.create();
     loadingPromise.then(r => r.present());
 
-    const createObservable = this.<%= camelize(name) %>Service.create(<%= camelize(name) %>);
+    const createObservable = this.<%= camelize(name) %>Service.add(<%= camelize(name) %>);
 
     this.createSubscription = createObservable.subscribe((value) => {
       this.alertController.create(<AlertOptions>{

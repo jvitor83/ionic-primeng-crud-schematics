@@ -44,7 +44,7 @@ export class <%= classify(name) %>ViewPage implements OnInit, OnDestroy {
     const loadingPromise = this.loadingController.create();
     loadingPromise.then(r => r.present());
 
-    const readObservable: Observable<any> = this.<%= camelize(name) %>Service.get(<%= camelize(name) %>Id);
+    const readObservable: Observable<any> = this.<%= camelize(name) %>Service.getByKey(<%= camelize(name) %>Id);
 
     this.readSubscription = readObservable.subscribe(<%= camelize(name) %> => {
       Object.assign(this.<%= camelize(name) %>, <%= camelize(name) %>);

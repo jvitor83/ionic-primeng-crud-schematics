@@ -5,6 +5,7 @@ import { LoadingController, AlertController, Platform } from '@ionic/angular';
 import { AlertOptions, AlertButton } from '@ionic/core';
 import { LazyLoadEvent, DataTable } from 'primeng/primeng';
 import { <%= classify(name) %> } from './<%= camelize(name) %>.model';
+import { EntityCollectionService, EntityServices, QueryParams } from 'ngrx-data';
 
 @Component({
   selector: '<%= selector %>',
@@ -63,7 +64,7 @@ export class <%= classify(name) %>Page implements OnInit, OnDestroy {
     const loadingPromise = this.loadingController.create();
     loadingPromise.then(r => r.present());
 
-    const arrayObservable: Observable<Brewerie[]> = this.<%= camelize(name) %>Service
+    const arrayObservable: Observable<<%= classify(name) %>[]> = this.<%= camelize(name) %>Service
       .getWithQuery(<QueryParams>{ 'page': skip.toString(), 'per_page': take.toString() });
 
     this.arraySubscription = arrayObservable
