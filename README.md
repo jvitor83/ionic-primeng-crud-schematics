@@ -1,4 +1,4 @@
-# Schematics - jvitor83/ionic-crud-schematics
+# Schematics - jvitor83/ionic-primeng-crud-schematics
 
 ## Your Project Configurations (OPTIONAL)
 
