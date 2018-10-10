@@ -4,7 +4,6 @@ import { Subscription, Observable } from 'rxjs';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { AlertOptions, AlertButton } from '@ionic/core';
 import { <%= classify(name) %> } from '../<%= camelize(name) %>.model';
-import { <%= classify(name) %>Service } from '../<%= camelize(name) %>-service/<%= camelize(name) %>.service';
 import { EntityCollectionService, EntityServices } from 'ngrx-data';
 
 @Component({

@@ -57,7 +57,7 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
       pluralNames: pluralNames,
     })
   ],
-  declarations: [<%= classify(name) %>Page, <%= classify(name) %>ChangePage, <%= classify(name) %>ViewPage]
+  declarations: [<%= classify(name) %>Page, <%= classify(name) %>ChangePage, <%= classify(name) %>ViewPage],
   providers: [ { provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig } ]
 })
 export class <%= classify(name) %>PageModule {}

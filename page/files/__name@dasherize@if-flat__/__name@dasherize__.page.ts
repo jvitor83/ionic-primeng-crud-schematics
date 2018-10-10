@@ -5,7 +5,6 @@ import { LoadingController, AlertController, Platform } from '@ionic/angular';
 import { AlertOptions, AlertButton } from '@ionic/core';
 import { LazyLoadEvent, DataTable } from 'primeng/primeng';
 import { <%= classify(name) %> } from './<%= camelize(name) %>.model';
-import { <%= classify(name) %>Service } from './<%= camelize(name) %>-service/<%= camelize(name) %>.service';
 
 @Component({
   selector: '<%= selector %>',
