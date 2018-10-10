@@ -4,7 +4,7 @@
 
 ### Add Dependencies
 ```bash
-npm install --save @ngrx/effects @ngrx/entity @ngrx/store @ngrx/store-devtools ngrx-data primeng
+npm install --save @angular/animations @ngrx/effects @ngrx/entity @ngrx/store @ngrx/store-devtools ngrx-data primeng
 ```
 
 ### Add the missing imports to `app.module.ts`
