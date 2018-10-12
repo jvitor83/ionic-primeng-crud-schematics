@@ -2,9 +2,32 @@
 
 ## Your Project Configurations (OPTIONAL)
 
+### Install the tools
+- Install [Node.js](https://nodejs.org/en/download/)
+```bash
+npm i -g @angular/cli ionic
+```
+
+### Create your project
+```bash
+ionic start --type=angular MyProject
+```
+
 ### Add Dependencies
 ```bash
-npm install --save @angular/animations @ngrx/effects @ngrx/entity @ngrx/store @ngrx/store-devtools ngrx-data primeng
+npm install --save @angular/animations @ngrx/effects @ngrx/entity @ngrx/store @ngrx/store-devtools ngrx-data primeng primeicons
+```
+
+### Add styles at `angular.json`
+> primeng requirement
+```json
+            "styles": [ 
+              {"input": "node_modules/primeicons/primeicons.css"},
+              {"input": "node_modules/primeng/resources/themes/nova-light/theme.css"},
+              {"input": "node_modules/primeng/resources/primeng.min.css"},
+              {"input": "src/theme/variables.scss"},
+              {"input": "src/global.scss"}
+            ]
 ```
 
 ### Add the missing imports to `app.module.ts`
