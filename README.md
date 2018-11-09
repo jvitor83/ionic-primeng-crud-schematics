@@ -15,7 +15,7 @@ ionic start --type=angular MyProject
 
 ### Add Dependencies
 ```bash
-npm install --save @angular/animations @ngrx/effects @ngrx/entity @ngrx/store @ngrx/store-devtools ngrx-data primeng primeicons
+npm install --save @angular/animations@6.1.1 @ngrx/effects @ngrx/entity @ngrx/store @ngrx/store-devtools ngrx-data primeng primeicons
 ```
 
 ### Add styles at `angular.json`
